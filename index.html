@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Library</title>
+</head>
+<body>
+    <main>
+        <form class="prompt-form">
+            <label for="prompt-title">Title:</label>
+            <input type="text" name="prompt-title" id="prompt-title">
+            <label for="user-prompt">Type prompt here:</label>
+            <textarea id="user-prompt" name="user-prompt" rows="5" cols="40" placeholder="Enter prompt here..."></textarea>
+            <label for="tags">Tags</label>
+            <input type="tags" name="tags" id="tags">
+            <button type="submit" id="submit-btn">Submit</button>
+        </form>
+        <section>
+            <div id="prompt-container" class="prompt-grid"></div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
