@@ -1,0 +1,171 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+:root {
+    --background-color: #0f172a;
+    --card-bg-color: #1e293b;
+    --main-text: #f1f5f9;
+    --muted-text: #94a3b8;
+    --accent-color: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --danger-color: #ef4444;
+    --success-color: #22c55e;
+    --success-text: #ffffff;
+    --border-color: #334155;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--main-text);
+    font-family: "Inter", system-ui, sans-serif;
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.wrapper {
+    max-inline-size: 75rem;
+    margin: auto;
+}
+
+/* h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+    font-size: 1.75rem;
+} */
+
+.prompt-form {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.20rem;
+}
+
+.prompt-form label {
+    font-weight: bold;
+    color: var(--muted-text);
+}
+
+.prompt-form input, .prompt-form textarea {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--main-text);
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.prompt-form textarea {
+  resize: vertical; 
+  min-height: 100px;
+}
+
+.prompt-form input:focus, .prompt-form textarea:focus {
+    outline: 2px solid var(--accent-color);
+    border-color: transparent
+}
+
+#submit-btn {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    font-weight: bold;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s;
+}
+
+#submit-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.prompt-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+.prompt-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-bg-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 1.5rem;
+}
+
+.prompt-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.prompt-card h2 {
+    font-size: 1.25rem;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.prompt-card p {
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 4px;
+    color: var(--muted-text);
+    text-align: center;
+}
+
+.tags {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    font-style: italic;
+    margin-bottom: auto;
+}
+
+.prompt-card button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.copy-btn {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    margin-top: 1rem;
+}
+
+.copy-btn.success {
+    background-color: var(--success-color);
+    color: var(--success-text);
+    cursor: default;
+}
+
+.delete-btn {
+    background-color: transparent;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    margin-top: 0.5rem;
+}
+
+.delete-btn:hover {
+    background-color: var(--danger-color);
+    color: #fff;
+}

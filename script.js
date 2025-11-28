@@ -89,11 +89,15 @@ promptContainer.addEventListener("click", (e) => {
         const promptToFind = promptData.find((item) => item.id === promptId);
         try {
             navigator.clipboard.writeText(promptToFind.text);
+            // 1. Changes the copy button's text
             e.target.textContent = "Copied!";
-            e.target.style.color = "red";
+            // 2. Add the 'success' class to change it style.
+            e.target.classList.add("success");
             setTimeout(() => {
+                // 3. Revert text back to "Copy"
                 e.target.textContent = "Copy";
-                e.target.style.color = "";
+                // 4. Remove the added styling
+                e.target.classList.remove("success");
             }, 2000);
         } catch (error) {
             throw new Error("Failed to copy text", error);
