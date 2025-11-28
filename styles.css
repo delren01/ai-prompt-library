@@ -91,7 +91,7 @@ body {
     background-color: var(--accent-hover);
 }
 
-.prompt-container {
+.prompt-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
@@ -168,4 +168,37 @@ body {
 .delete-btn:hover {
     background-color: var(--danger-color);
     color: #fff;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-container button {
+    background-color: transparent;
+    border: 1px solid var(--background-color);
+    color: var(--muted-text);
+    padding: 0.5rem 1rem;
+    border: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.filter-container button:hover {
+    border-color: var(--border-color);
+    color: var(--accent-color);
+    background-color: rgba(56, 189, 248, 0.1);
+}
+
+.filter-container button.active {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    border-color: var(--accent-color);
 }

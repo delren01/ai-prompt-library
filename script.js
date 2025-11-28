@@ -2,7 +2,7 @@ let defaultPrompts = [{
     id: 1,
     title: "WCAG Color Contrast Checker",
     text: "Do these two colors pass the Level AAA test? Hex 1: [insert], Hex 2: [insert]",
-    tags: ["CSS", "Accessibility"],
+    tags: ["css", "accessibility"],
 },
 {
     id: 2,
@@ -10,7 +10,7 @@ let defaultPrompts = [{
     text: `Act as a Senior [programming language] Developer.
 I will provide a code snippet. Please perform a code review looking for any errors.
 Here is the code: [PASTE CODE HERE]`,
-    tags: ["Python", "Java", "JavaScript", "Code Review"],
+    tags: ["python", "java", "javascript", "code review"],
 }, 
 {
     id: 3,
@@ -19,13 +19,13 @@ Here is the code: [PASTE CODE HERE]`,
  I will provide a code snippet. Analyze if my current code is mobile-friendly, if not,
 revise it and make it mobile-friendly.
 Here is th code: [PASTE CODE HERE]`,
-    tags: ["CSS", "Mobile Responsive", "Accessibility"],
+    tags: ["css", "mobile responsive", "accessibility"],
 },
 {
     id: 4,
     title: "Recommend Best Array Higher Order Functions",
     text: "For this kind of array, [explain here], recommend me which higher order function works best here",
-    tags: ["JavaScript", "Arrays"],
+    tags: ["javascript", "arrays"],
 },
 ];
 
@@ -36,11 +36,12 @@ const promptContainer = document.getElementById("prompt-container");
 const promptTitle = document.getElementById("prompt-title");
 const promptTextArea = document.getElementById("user-prompt");
 const promptTags = document.getElementById("tags");
-const submitBtn = document.getElementById("submit-btn");
+const submitBtn = document.getElementById("submit-btn");;
+const filterContainer = document.querySelector(".filter-container");
 
-function renderPrompts() {
+function renderPrompts(listToRender) {
     promptContainer.innerHTML = "";
-    const htmlString = promptData.map((prompt) => {
+    const htmlString = listToRender.map((prompt) => {
         return `<div class="prompt-card" id="${prompt.id}">
             <h2>${prompt.title}</h2>
             <p>${prompt.text}</p>
@@ -59,7 +60,7 @@ promptForm.addEventListener("submit", (event) => {
     const rawTags = promptTags.value;
 
     // String -> Array
-    const tagsArray = rawTags.split(",").map((tag) => tag.trim());
+    const tagsArray = rawTags.split(",").map((tag) => tag.trim().toLowerCase());
 
     const newPrompt = {
         id: Date.now(),
@@ -72,8 +73,21 @@ promptForm.addEventListener("submit", (event) => {
     promptForm.reset();
     localStorage.setItem("prompt", JSON.stringify(promptData));
     // Makes sure that it reflects the new data submitted onto the screen.
-    renderPrompts();
+    currentFilter = "all";
+    renderPrompts(promptData);
 });
+
+let currentFilter = "all";
+
+function handleFilter() {
+    if (currentFilter === "all") {
+        renderPrompts(promptData);
+    } else {
+        // Dynamic filtering: Show prompts where tags include the current filter
+        const filteredList = promptData.filter((prompt) => prompt.tags.includes(currentFilter));
+        renderPrompts(filteredList);
+    }
+}
 
 
 promptContainer.addEventListener("click", (e) => {
@@ -81,7 +95,7 @@ promptContainer.addEventListener("click", (e) => {
         const promptEl = e.target.parentElement;
         const idToDelete = Number(promptEl.id);
         promptData = promptData.filter((prompt) => prompt.id !== idToDelete);
-        renderPrompts();
+        handleFilter();
         localStorage.setItem("prompt", JSON.stringify(promptData));
     } else if (e.target.classList.contains("copy-btn")) {
         const promptEl = e.target.parentElement;
@@ -105,4 +119,13 @@ promptContainer.addEventListener("click", (e) => {
     };
 });
 
-renderPrompts();
+// Handles all the button's event listener
+filterContainer.addEventListener("click", (event) => {
+    if (!event.target.value) return;
+    currentFilter = event.target.value;
+    handleFilter();
+});
+
+
+
+renderPrompts(promptData);
