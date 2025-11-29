@@ -27,6 +27,15 @@ body {
     padding: 2rem;
 }
 
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+    line-height: 1.1;
+}
+
 .wrapper {
     max-inline-size: 75rem;
     margin: auto;
